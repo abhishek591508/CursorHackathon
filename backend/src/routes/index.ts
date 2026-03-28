@@ -8,7 +8,10 @@ import { createAuthRoutes } from './auth.routes.js';
 import healthRoutes from './health.routes.js';
 import { createIssueRoutes } from './issue.routes.js';
 import { createLeadersApplicationRoutes } from './leadersApplication.routes.js';
+import { createApifyRouter } from './apify.routes.js';
+import { createExaRouter } from './exa.routes.js';
 import { createPostsRouter } from './posts.routes.js';
+import { createV0Router } from './v0.routes.js';
 
 export function createApiRouter(
   auth: AuthMiddlewares,
@@ -25,6 +28,9 @@ export function createApiRouter(
   router.use('/admin', createAdminRoutes(auth));
   router.use(createLeadersApplicationRoutes(auth));
   router.use(createPostsRouter(auth, services));
+  router.use(createApifyRouter(auth, redis, env));
+  router.use(createExaRouter(auth, redis, env));
+  router.use(createV0Router(auth, redis, env));
   router.use(createIssueRoutes(auth));
 
   return router;

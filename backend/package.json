@@ -9,6 +9,7 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
+    "apify-client": "^2.22.3",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -20,6 +21,7 @@
     "pino": "^10.3.1",
     "pino-http": "^11.0.0",
     "socket.io": "^4.8.3",
+    "v0-sdk": "^0.16.4",
     "zod": "^4.3.6"
   },
   "devDependencies": {

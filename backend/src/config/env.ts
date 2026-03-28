@@ -5,7 +5,7 @@ const envSchema = z.object({
     .enum(['development', 'test', 'production'])
     .default('development'),
   PORT: z.coerce.number().int().positive().max(65535).default(3000),
-  FRONTEND_URL: z.string().url().default('http://localhost:5173'),
+  FRONTEND_URL: z.string().url().default('http://localhost:3000'),
   MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
   LOG_LEVEL: z
     .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace'])
@@ -21,6 +21,14 @@ const envSchema = z.object({
   REDIS_URL: z.string().url().optional(),
   /** OpenAI key for post moderation (Moderations API) */
   OPENAI_API_KEY: z.string().optional(),
+  /** Apify API token — enables “related web search” for posts (Google SERP actor) */
+  APIFY_TOKEN: z.string().min(1).optional(),
+  /** Override default actor; see https://apify.com/apify/google-search-scraper */
+  APIFY_GOOGLE_SEARCH_ACTOR_ID: z.string().min(1).optional(),
+  /** Exa API key — semantic / hybrid web search (https://exa.ai) */
+  EXA_API_KEY: z.string().min(1).optional(),
+  /** Vercel v0 Platform API key (https://v0.dev/chat/settings/keys) */
+  V0_API_KEY: z.string().min(1).optional(),
   /** Extra allowed browser origins (comma-separated), e.g. Next.js on :3000 */
   CORS_EXTRA: z.string().optional(),
 });
